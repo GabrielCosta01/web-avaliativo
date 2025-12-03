@@ -17,15 +17,21 @@ export async function generateCatalogPdf(items) {
       const margin = 40
 
       let img
-      if (item.image) {
+      // tenta imagem local primeiro
+      try {
+        const localPath = item.localImage ? `/images/products/${encodeURIComponent(item.localImage)}` : `/images/products/${item.id}.jpg`
+        const localRes = await fetch(localPath)
+        if (localRes.ok) {
+          const bytes = await localRes.arrayBuffer()
+          try { img = await pdfDoc.embedJpg(bytes) } catch { img = await pdfDoc.embedPng(bytes) }
+        }
+      } catch {}
+      // fallback para imagem remota
+      if (!img && item.image) {
         try {
           const res = await fetch(item.image)
           const bytes = await res.arrayBuffer()
-          try {
-            img = await pdfDoc.embedJpg(bytes)
-          } catch {
-            img = await pdfDoc.embedPng(bytes)
-          }
+          try { img = await pdfDoc.embedJpg(bytes) } catch { img = await pdfDoc.embedPng(bytes) }
         } catch {}
       }
 

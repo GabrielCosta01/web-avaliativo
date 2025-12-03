@@ -7,8 +7,8 @@ import sampleData from '../data/sampleMenu.json'
 import { generateCatalogPdf } from '../utils/pdf.js'
 
 export default function MenuPage() {
-  const [persistedItems, setPersistedItems] = useLocalStorage('simple-menu-items', null)
-  const [items] = useState(() => Array.isArray(persistedItems) ? persistedItems : sampleData)
+  const [persistedItems] = useLocalStorage('simple-menu-items', sampleData)
+  const items = Array.isArray(persistedItems) && persistedItems.length >= 7 ? persistedItems : sampleData
   const [query, setQuery] = useState('')
   const [coords, setCoords] = useState({ lat: -17.7927152, lon: -50.9421775 })
   const { add } = useCart()
@@ -61,15 +61,24 @@ export default function MenuPage() {
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" role="list" aria-label="Itens do catálogo">
           {filtered.map(item => (
             <li key={item.id} className={`rounded-lg overflow-hidden bg-neutral-900 shadow transition ${highlightId === item.id ? 'ring-2 ring-orange-500 animate-pulse' : 'hover:ring-2 hover:ring-orange-500'}`} role="listitem">
-              {item.image && (
+              {(
                 <img
-                  src={item.image}
+                  src={item.localImage ? `/images/products/${encodeURIComponent(item.localImage)}` : `/images/products/${item.id}.jpg`}
                   alt={item.name}
                   className="h-40 w-full object-cover"
                   loading="lazy"
                   referrerPolicy="no-referrer"
                   crossOrigin="anonymous"
-                  onError={(e) => { e.currentTarget.src = 'https://via.placeholder.com/600x400?text=OpenBox' }}
+                  data-attempt="local"
+                  onError={(e) => {
+                    const attempt = e.currentTarget.dataset.attempt
+                    if (attempt === 'local' && item.image) {
+                      e.currentTarget.dataset.attempt = 'remote'
+                      e.currentTarget.src = item.image
+                      return
+                    }
+                    e.currentTarget.src = 'https://via.placeholder.com/600x400?text=OpenBox'
+                  }}
                 />
               )}
               <div className="p-4 space-y-1">

@@ -6,7 +6,8 @@
     "price": 39.9,
     "category": "hambúrguer artesanal",
     "tags": ["madero", "artesanal"],
-    "image": "https://picsum.photos/seed/burger-picanha/1200/800"
+    "image": "https://picsum.photos/seed/burger-picanha/1200/800",
+    "localImage": "hamburguer1.jpeg"
   },
   {
     "id": "b2",
@@ -16,6 +17,7 @@
     "category": "hambúrguer artesanal",
     "tags": ["madero", "cheese"],
     "image": "https://picsum.photos/seed/burger-cheese/1200/800",
+    "localImage": "hamburguer2.jpeg",
     "sources": [
       "https://www.google.com/url?sa=i&url=https%3A%2F%2Fbomgourmet.com%2Fbomgourmet%2Fgrupo-madero-anuncia-abertura-de-mais-dois-restaurantes-no-rio-de-janeiro%2F&psig=AOvVaw2rfsi0MDvPVesZ_ZhOvsfU&ust=1764806911666000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCNiXyqaQoJEDFQAAAAAdAAAAABAE"
     ]
@@ -27,7 +29,8 @@
     "price": 42.0,
     "category": "hambúrguer artesanal",
     "tags": ["madero", "bacon"],
-    "image": "https://picsum.photos/seed/burger-bacon/1200/800"
+    "image": "https://picsum.photos/seed/burger-bacon/1200/800",
+    "localImage": "hamburguer3.jpg"
   },
   {
     "id": "b4",
@@ -37,6 +40,7 @@
     "category": "hambúrguer artesanal",
     "tags": ["madero", "veg"],
     "image": "https://picsum.photos/seed/burger-veggie/1200/800",
+    "localImage": "hamburguer4.jpeg",
     "sources": [
       "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.metropoles.com%2Fmao-na-massa%2Fchef-junior-durski-ensina-a-fazer-o-hamburger-vegetariano-do-madero&psig=AOvVaw1zunMD3Ou-UQNIlWpFCNrX&ust=1764806955593000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCPD4g7KQoJEDFQAAAAAdAAAAABAE"
     ]
@@ -49,29 +53,12 @@
     "category": "hambúrguer artesanal",
     "tags": ["madero", "duplo"],
     "image": "https://picsum.photos/seed/burger-double/1200/800",
+    "localImage": "hamburguer5.jpeg",
     "sources": [
       "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.metropoles.com%2Fgastronomia%2Fcomer%2Fapos-abrir-nova-unidade-no-df-madero-inclui-novo-sanduiche-no-menu&psig=AOvVaw0W1kaNJtccvfV5FzzCcKYr&ust=1764806977096000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCKjC_7uQoJEDFQAAAAAdAAAAABAE"
     ]
   },
-  {
-    "id": "b6",
-    "name": "OpenBox Madero BBQ Burger",
-    "description": "Molho barbecue da casa e queijo prato",
-    "price": 41.0,
-    "category": "hambúrguer artesanal",
-    "tags": ["madero", "bbq"],
-    "image": "https://picsum.photos/seed/burger-bbq/1200/800"
-  },
-  {
-    "id": "p1",
-    "name": "OpenBox Pizza Margherita",
-    "description": "Molho de tomate, mussarela e manjericão fresco",
-    "price": 32.9,
-    "category": "pizza",
-    "tags": ["pizza", "margherita"],
-    "image": "https://picsum.photos/seed/pizza-margherita/1200/800",
-    "source": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fcookidoo.pt%2Frecipes%2Frecipe%2Fpt-PT%2Fr652170&psig=AOvVaw2IETv7CGT_FtfqOBA0wp1k&ust=1764809360694000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCOjzjKyZoJEDFQAAAAAdAAAAABAE"
-  },
+  
   {
     "id": "d1",
     "name": "OpenBox Suco de Laranja",
@@ -80,6 +67,7 @@
     "category": "bebida",
     "tags": ["suco", "laranja"],
     "image": "https://picsum.photos/seed/orange-juice/1200/800",
+    "localImage": "suco de laranja.jpeg",
     "source": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.comper.com.br%2Fsuco-pronto-natural-one-laranja-1-5-litro%2Fp&psig=AOvVaw29Cd-MIMAmWbN_iw9VuY0S&ust=1764809292150000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCMCXnY2ZoJEDFQAAAAAdAAAAABAE"
   }
 ]
