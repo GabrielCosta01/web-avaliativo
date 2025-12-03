@@ -75,3 +75,87 @@ Aplicação React focada em conceitos fundamentais com UX moderna. Abaixo estão
 **Notas**
 - URLs de imagens podem ser diretas ou usar fallback para evitar “Aviso de redirecionamento”.
 
+## Trechos de código e links
+
+### 1) useState
+```jsx
+// src/pages/MenuPage.jsx
+const [query, setQuery] = useState('')
+const [coords, setCoords] = useState({ lat: -17.7927152, lon: -50.9421775 })
+```
+- Ver no código: https://github.com/GabrielCosta01/web-avaliativo/blob/main/src/pages/MenuPage.jsx#L12-L16
+- Referência local: `src/pages/MenuPage.jsx:12`
+
+### 2) Hook customizado (useLocalStorage)
+```js
+// src/hooks/useLocalStorage.js
+export default function useLocalStorage(key, initialValue) {
+  const [value, setValue] = useState(() => {
+    try {
+      const item = window.localStorage.getItem(key)
+      return item ? JSON.parse(item) : initialValue
+    } catch {
+      return initialValue
+    }
+  })
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(key, JSON.stringify(value))
+    } catch {}
+  }, [key, value])
+  return [value, setValue]
+}
+```
+- Ver no código: https://github.com/GabrielCosta01/web-avaliativo/blob/main/src/hooks/useLocalStorage.js#L3-L19
+- Referência local: `src/hooks/useLocalStorage.js:3`
+
+### 3) Persistência (integração no carrinho)
+```jsx
+// src/context/CartContext.jsx
+const [persisted, setPersisted] = useLocalStorage('cart-items', { items: [] })
+useEffect(() => {
+  setPersisted(state)
+}, [state])
+```
+- Ver no código: https://github.com/GabrielCosta01/web-avaliativo/blob/main/src/context/CartContext.jsx#L30-L41
+- Referência local: `src/context/CartContext.jsx:30`
+
+### 4) Geração de PDF (pdf-lib)
+```js
+// src/utils/pdf.js
+export async function generateCatalogPdf(items) {
+  const pdfDoc = await PDFDocument.create()
+  const font = await pdfDoc.embedFont(StandardFonts.Helvetica)
+  const cover = pdfDoc.addPage([595, 842])
+  cover.drawText('Catálogo de Produtos', { x: 40, y: 760, size: 18, font })
+  for (const item of items) {
+    const page = pdfDoc.addPage([595, 842])
+    let img
+    if (item.image) {
+      const res = await fetch(item.image)
+      const bytes = await res.arrayBuffer()
+      try { img = await pdfDoc.embedJpg(bytes) } catch { img = await pdfDoc.embedPng(bytes) }
+    }
+    // desenha imagem ou placeholder e textos do item
+  }
+}
+```
+- Ver no código: https://github.com/GabrielCosta01/web-avaliativo/blob/main/src/utils/pdf.js#L3-L48
+- Referência local: `src/utils/pdf.js:3`
+
+### 5) React Router DOM
+```jsx
+// src/App.jsx
+<BrowserRouter>
+  <Routes>
+    <Route path="/" element={<Layout />}> 
+      <Route index element={<MenuPage />} />
+      <Route path="carrinho" element={<CartPage />} />
+      <Route path="*" element={<NotFound />} />
+    </Route>
+  </Routes>
+</BrowserRouter>
+```
+- Ver no código: https://github.com/GabrielCosta01/web-avaliativo/blob/main/src/App.jsx#L11-L21
+- Referência local: `src/App.jsx:11`
+
